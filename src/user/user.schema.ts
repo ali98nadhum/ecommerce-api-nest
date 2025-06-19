@@ -24,8 +24,7 @@ export class User {
   @Prop({
     type: String,
     required: true,
-    min: [3, 'Password must be at least 3 characters'],
-    max: [20, 'Password must be at most 20 characters'],
+    minlength: [8, 'Password must be at least 8 characters'],
   })
   password: String;
 
@@ -38,9 +37,9 @@ export class User {
   role: string;
 
   @Prop({
-    type: String,
+    type: Boolean,
   })
-  avatar: string;
+  avatar: boolean;
 
   @Prop({
     type: Number,
@@ -48,9 +47,9 @@ export class User {
   age: number;
 
   @Prop({
-    type: Number,
+    type: String,
   })
-  phoneNumber: number;
+  phoneNumber: string;
 
   @Prop({
     type: String,
