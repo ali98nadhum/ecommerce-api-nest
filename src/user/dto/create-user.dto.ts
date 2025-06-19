@@ -1,4 +1,4 @@
-import { IsBoolean, IsEmail, IsEnum, IsNumber, IsPhoneNumber, IsString, Length, MaxLength, MinLength } from 'class-validator';
+import { IsBoolean, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsPhoneNumber, IsString, Length, MaxLength, MinLength } from 'class-validator';
 
 
 
@@ -8,9 +8,11 @@ export class CreateUserDto {
   @MaxLength(30, { message: 'Name must be at most 30 characters' })
   name: String;
   @IsString({ message: 'Email must be String' })
+  @IsNotEmpty({ message: 'Email is required' })
   @IsEmail({}, { message: 'Invalid email address' })
   email: String;
   @IsString({ message: 'Password must be String' })
+  @IsNotEmpty({ message: 'Password is required' })
   @MinLength(8, { message: 'Password must be at least 8 characters' })
   password: String;
   @IsEnum(['user', 'admin'], { message: 'Role must be user or admin' })
