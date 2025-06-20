@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from './guard/Auth.guard';
+import { Roles } from './decorator/roles.decorator';
 
 @Controller('user')
 export class UserController {
@@ -10,6 +11,7 @@ export class UserController {
 
   @Post()
   @UseGuards(AuthGuard)
+  @Roles(['admin'])
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
